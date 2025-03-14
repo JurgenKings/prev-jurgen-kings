@@ -8,7 +8,7 @@ Este proyecto es un portfolio web personal.
 
 Este repositorio contiene una pequeña versión de la aplicación web y NO es funcional, es para mostrar mi estilo de codificar. 
 La versión completa y funcional se encuentra en el repositorio oficial y es totalmente privado.
-Si desea ver el proyecto real, puede visitarlo en el siguiente enlace: https://jurgen-kings.vercel.app
+Si desea ver el proyecto real, puede visitarlo en el siguiente enlace: https://jurgenkings.com
 
 ## 🚀 Tecnologías Usadas
 
@@ -26,4 +26,4 @@ Este proyecto preview está licenciado bajo la licencia MIT. Consulta el archivo
 
 ## 📝 Autor
 
-[Jurgen Kings](https://jurgen-kings.vercel.app)
+[Jurgen Kings](https://jurgenkings.com)
