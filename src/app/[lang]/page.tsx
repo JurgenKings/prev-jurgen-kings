@@ -3,17 +3,38 @@ import { Metadata } from "next"
 import { Cinzel } from "next/font/google"
 import Hero from "@/components/Hero"
 import About from "@/components/About"
-import Stacks from "@/components/Stacks"
-import Footer from "@/components/Footer"
 import Projects from "@/components/Projects"
-import Contact from "@/components/Contact"
 import Experience from "@/components/Experience"
+import Blog from "@/components/Blog"
+import Stacks from "@/components/Stacks"
+import Contact from "@/components/Contact"
+import Footer from "@/components/Footer"
 import TransitionPage from "@/components/TransitionPage"
-import getTranslations from "@/utils/translate"
+import getTranslations from "@/actions/translate"
+import { blogPostsES } from "@/utils/blogPosts"
+import { blogPostsEN } from "@/utils/blogPostsEN"
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: `${process.env.BASE_URL}`,
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const baseUrl = process.env.BASE_URL || "https://jurgenkings.com"
+  const resolvedParams = await params
+  const { lang } = resolvedParams
+  const metaTranslations = await getTranslations(lang, "meta")
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: "Jurgen Kings",
+    description: metaTranslations.description,
+    keywords: metaTranslations.keywords,
+    twitter: {
+      card: "summary_large_image",
+    },
+    alternates: {
+      canonical: `${baseUrl}/${lang}`,
+      languages: {
+        "es": `${baseUrl}/es`,
+        "en": `${baseUrl}/en`,
+      }
+    }
   }
 }
 
@@ -34,6 +55,8 @@ async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const experienceTranslations = await getTranslations(lang, "experience")
   const utilsTranslations = await getTranslations(lang, "utils")
 
+  const blogPosts = lang === "es" ? blogPostsES : blogPostsEN
+
   return (
     <>
       <TransitionPage />
@@ -47,6 +70,7 @@ async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
         <About t={aboutTranslations} />
         <Projects t={projectsTranslations} lang={lang} />
         <Experience t={experienceTranslations} lang={lang} />
+        <Blog blogPosts={blogPosts} lang={lang} />
         <Stacks t={stacksTranslations} />
         <Contact t={contactTranslations} tu={utilsTranslations} lang={lang} />
         <Footer t={footerTranslations} tu={utilsTranslations} />

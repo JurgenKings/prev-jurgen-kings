@@ -1,15 +1,34 @@
 import type { Metadata } from "next"
 import { Toaster } from "react-hot-toast"
+import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/context/ThemeContext"
-import getTranslations from "@/utils/translate"
+import getTranslations from "@/actions/translate"
+import PrismStyles from "@/components/PrismStyles"
 import "../globals.css"
+import "../prism-okaidia.css"
 
-export const metadata: Metadata = {
-  metadataBase: new URL(`${process.env.BASE_URL}`),
-  title: "Jurgen Kings",
-  twitter: {
-    card: "summary_large_image",
-  },
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const baseUrl = process.env.BASE_URL || "https://jurgenkings.com"
+  const resolvedParams = await params
+  const { lang } = resolvedParams
+  const metaTranslations = await getTranslations(lang, "meta")
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: "Jurgen Kings",
+    description: metaTranslations.description,
+    keywords: metaTranslations.keywords,
+    twitter: {
+      card: "summary_large_image",
+    },
+    alternates: {
+      canonical: `${baseUrl}/${lang}`,
+      languages: {
+        "es": `${baseUrl}/es`,
+        "en": `${baseUrl}/en`,
+      }
+    }
+  }
 }
 
 export default async function RootLayout({
@@ -21,18 +40,15 @@ export default async function RootLayout({
 }>) {
 
   const { lang } = await params
-  const metaTranslations = await getTranslations(lang, "meta")
 
   return (
-    <html lang={lang}>
-      <head>
-        <meta name="description" content={metaTranslations.description} />
-        <meta name="keywords" content={metaTranslations.keywords} />
-      </head>
+    <html lang={lang} suppressHydrationWarning>
       <body>
         <ThemeProvider>
+          <PrismStyles />
           <Toaster position="top-right" />
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

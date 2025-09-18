@@ -8,8 +8,10 @@ export async function middleware(req: NextRequest) {
   if (
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/api/") ||
-    pathname.startsWith("/images/") || 
-    pathname.startsWith("/documents/") 
+    pathname.startsWith("/images/") ||
+    pathname.startsWith("/documents/") ||
+    pathname === "/favicon.ico" ||
+    pathname.endsWith(".png")
   ) {
     return NextResponse.next()
   }
@@ -23,5 +25,10 @@ export async function middleware(req: NextRequest) {
 
   req.nextUrl.pathname = `${locale}${pathname}`
 
-  return NextResponse.redirect(req.nextUrl)
+  const response = NextResponse.redirect(req.nextUrl)
+  response.headers.set(
+    "Link",
+    `<${req.nextUrl.origin}/${locale}>; rel="canonical"`
+  )
+  return response
 }
