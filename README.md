@@ -1,29 +1,30 @@
-# ESTO ES UN PREVIEW DEL PROYECTO DE MI PORTAFOLIO
+# 🌐 Preview — Personal Portfolio
 
-## 📌 Descripción
+## 📌 Description
+This repository is a **preview version** of my personal portfolio website.  
+It is **not functional** — the goal is to showcase my coding style and project structure.  
 
-Este proyecto es un portfolio web personal.
+👉 The **full and functional version** is private.  
+You can visit the live website here: [jurgenkings.com](https://jurgenkings.com)
 
-## NOTA IMPORTANTE
+---
 
-Este repositorio contiene una pequeña versión de la aplicación web y NO es funcional, es para mostrar mi estilo de codificar. 
-La versión completa y funcional se encuentra en el repositorio oficial y es totalmente privado.
-Si desea ver el proyecto real, puede visitarlo en el siguiente enlace: https://jurgenkings.com
+## 🚀 Tech Stack
+- **Framework:** Next.js (TypeScript)  
+- **Styling:** Tailwind CSS  
+- **Animations:** Framer Motion, OGL  
+- **Email Service:** Resend  
+- **Utilities:** Negotiator, Prism.js  
 
-## 🚀 Tecnologías Usadas
+---
 
-- Next.js 
-- Tailwind CSS
-- TypeScript
-- Motion (Framer Motion)
-- Three.js
-- Resend 
-- Negotiator
+## 📝 License
+This preview project is licensed under the MIT License.  
+See the [LICENSE](./LICENSE) file for more details.  
 
-## 📝 Licencia
+---
 
-Este proyecto preview está licenciado bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
-
-## 📝 Autor
-
-[Jurgen Kings](https://jurgenkings.com)
+## 👨‍💻 Author
+**Jurgen Kings (Jorge Reyes)**  
+🌐 [jurgenkings.com](https://jurgenkings.com)  
+📧 jorgereyes@jurgenkings.com  
